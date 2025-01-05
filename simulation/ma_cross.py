@@ -139,4 +139,4 @@ def run_ma_sim(curr_list=["EUR", "USD"], granularity=["H1", "H4"], ma_long=[20, 
                 pair = f"{p1}_{p2}"
                 if pair in ic.instruments_dict.keys():
                     analyse_pair(ic.instruments_dict[pair], g, ma_long, ma_short, filepath)
-    
+        # excel file goes on this level
