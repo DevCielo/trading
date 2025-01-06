@@ -81,6 +81,12 @@ def create_excel(df_ma_res, df_ma_trades, granularity):
 
     writer.close()
 
+def create_ma_res(granularity):
+    df_ma_res = pd.read_pickle("./data/ma_res.pkl")
+    df_ma_trades = pd.read_pickle("./data/ma_trades.pkl")
+
+    create_excel(df_ma_res, df_ma_trades, granularity)
+
 if __name__ == "__main__":
 
     # Summary of performance metrics for each combination of long and short moving averages applied to different
