@@ -108,7 +108,7 @@ class GuruTester:
         
     def prepare_data(self):
         
-        print("prepare_data...")
+        # print("prepare_data...")
 
         if self.use_spread == False:
             remove_spread( self.df_big)
@@ -128,7 +128,7 @@ class GuruTester:
         self.merged.SIGNAL = self.merged.SIGNAL.astype(int)
 
     def run_test(self):
-        print("run_test...")
+        # print("run_test...")
         open_trades_m5 = []
         closed_trades_m5 = []
 
@@ -144,4 +144,4 @@ class GuruTester:
             open_trades_m5 = [x for x in open_trades_m5 if x.running == True]
 
         self.df_results = pd.DataFrame.from_dict([vars(x) for x in closed_trades_m5]) 
-        print("Result:", self.df_results.result.sum())
+        # print("Result:", self.df_results.result.sum())
