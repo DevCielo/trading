@@ -1,0 +1,3 @@
+SELL = -1
+BUY = 1
+NONE = 0
