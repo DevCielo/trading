@@ -4,6 +4,8 @@ from infrastructure.log_wrapper import LogWrapper
 from models.trade_settings import TradeSettings
 from api.oanda_api import OandaApi
 from bot.candle_manager import CandleManager
+from bot.technicals_manager import get_trade_decision
+import constants.defs as defs
 
 class Bot:
 
@@ -51,7 +53,12 @@ class Bot:
         if len(triggered) > 0:
             self.log_message(f"process_candles triggered:{triggered}", Bot.MAIN_LOG)
             for p in triggered:
-                pass # Logic for whether we actually want to make a trade or not
+                # Logic for whether we actually want to make a trade or not
+                last_time = self.candle_manager.timings[p].last_time
+                trade_decision = get_trade_decision(last_time, p, Bot.GRANULARITY, self.api, self.trade_settings[p], self.log_message)
+                if trade_decision is not None and trade_decision.signal != defs.NONE:
+                    self.log_message(f"Place Trade: {trade_decision}", p)
+                    self.log_to_main(f"Place Trade: {trade_decision}")
  
     def run(self):
         while True:
