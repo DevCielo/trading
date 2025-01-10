@@ -3,6 +3,7 @@ import constants.defs as defs
 from infrastructure.instrument_collection import instrumentCollection as ic
 
 def get_trade_units(api: OandaApi, pair, signal, loss, trade_risk, log_message):
+
     prices = api.get_prices([pair])
 
     if prices is None or len(prices) == 0:
@@ -14,11 +15,11 @@ def get_trade_units(api: OandaApi, pair, signal, loss, trade_risk, log_message):
         if p.instrument == pair:
             price = p
             break
-
+    
     if price == None:
-        log_message("get_trade_units() Price is none????", pair)
+        log_message("get_trade_units() price is None????", pair)
         return False
-
+        
     log_message(f"get_trade_units() price {price}", pair)
 
     conv = price.buy_conv
@@ -30,6 +31,9 @@ def get_trade_units(api: OandaApi, pair, signal, loss, trade_risk, log_message):
     per_pip_loss = trade_risk / num_pips
     units = per_pip_loss / (conv * pipLocation)
 
-    log_message(f"pipLocation:{pipLocation} num_pips:{num_pips} per_pip_loss:{per_pip_loss} units:{units:.1f}", pair)
+    log_message(f"{pipLocation} {num_pips} {per_pip_loss} {units:.1f}", pair)
 
     return units
+
+    
+

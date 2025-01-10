@@ -1,12 +1,15 @@
-import json 
+import json
 import time
+from bot.candle_manager import CandleManager
+from bot.technicals_manager import get_trade_decision
+from bot.trade_manager import place_trade
+
 from infrastructure.log_wrapper import LogWrapper
 from models.trade_settings import TradeSettings
 from api.oanda_api import OandaApi
-from bot.candle_manager import CandleManager
-from bot.technicals_manager import get_trade_decision
 import constants.defs as defs
-from bot.trade_manager import place_trade
+
+
 
 class Bot:
 
@@ -26,10 +29,9 @@ class Bot:
         self.log_to_error("Bot started")
 
     def load_settings(self):
-        with open('./bot/settings.json', 'r') as f:
+        with open("./bot/settings.json", "r") as f:
             data = json.loads(f.read())
-            # Keys are "GBP_CHF" and "EUR_CHF", values are dictionaries
-            self.trade_settings = { k: TradeSettings(v, k) for k, v in data['pairs'].items()}
+            self.trade_settings = { k: TradeSettings(v, k) for k, v in data['pairs'].items() }
             self.trade_risk = data['trade_risk']
 
     def setup_logs(self):
@@ -42,7 +44,6 @@ class Bot:
         self.log_to_main(f"Bot started with {TradeSettings.settings_to_str(self.trade_settings)}")
 
     def log_message(self, msg, key):
-        # .debug actually logs the messages
         self.logs[key].logger.debug(msg)
 
     def log_to_main(self, msg):
@@ -55,16 +56,15 @@ class Bot:
         if len(triggered) > 0:
             self.log_message(f"process_candles triggered:{triggered}", Bot.MAIN_LOG)
             for p in triggered:
-                # Logic for whether we actually want to make a trade or not
                 last_time = self.candle_manager.timings[p].last_time
-                trade_decision = get_trade_decision(last_time, p, Bot.GRANULARITY, self.api, self.trade_settings[p], self.log_message)
+                trade_decision = get_trade_decision(last_time, p, Bot.GRANULARITY, self.api, 
+                                                       self.trade_settings[p],  self.log_message)
                 if trade_decision is not None and trade_decision.signal != defs.NONE:
                     self.log_message(f"Place Trade: {trade_decision}", p)
                     self.log_to_main(f"Place Trade: {trade_decision}")
-
-                    # Place trade
                     place_trade(trade_decision, self.api, self.log_message, self.log_to_error, self.trade_risk)
- 
+
+
     def run(self):
         while True:
             time.sleep(Bot.SLEEP)
@@ -73,3 +73,5 @@ class Bot:
             except Exception as error:
                 self.log_to_error(f"CRASH: {error}")
                 break
+    
+

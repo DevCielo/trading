@@ -1,4 +1,5 @@
 class TradeDecision:
+
     def __init__(self, row):
         self.gain = row.GAIN
         self.loss = row.LOSS

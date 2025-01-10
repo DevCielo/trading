@@ -1,4 +1,5 @@
 class TradeSettings:
+
     def __init__(self, ob, pair):
         self.n_ma = ob['n_ma']
         self.n_std = ob['n_std']
