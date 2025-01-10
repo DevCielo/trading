@@ -6,6 +6,7 @@ from api.oanda_api import OandaApi
 from bot.candle_manager import CandleManager
 from bot.technicals_manager import get_trade_decision
 import constants.defs as defs
+from bot.trade_manager import place_trade
 
 class Bot:
 
@@ -59,8 +60,15 @@ class Bot:
                 if trade_decision is not None and trade_decision.signal != defs.NONE:
                     self.log_message(f"Place Trade: {trade_decision}", p)
                     self.log_to_main(f"Place Trade: {trade_decision}")
+
+                    # Place trade
+                    place_trade(trade_decision, self.api, self.log_to_main, self.log_to_error)
  
     def run(self):
         while True:
             time.sleep(Bot.SLEEP)
-            self.process_candles(self.candle_manager.update_timings())
+            try:
+                self.process_candles(self.candle_manager.update_timings())
+            except Exception as error:
+                self.log_to_error(f"CRASH: {error}")
+                break
