@@ -124,11 +124,16 @@ class OandaApi:
         return df.iloc[-1].time
 
     def place_trade(self, pair_name: str, units: float, direction: int,
-                        stop_loss: float=None, take_profit: float=None):
+                stop_loss: float = None, take_profit: float = None):
 
         url = f"accounts/{ACCOUNT_ID}/orders"
 
-        instrument = ic.instruments_dict[pair_name]
+        try:
+            instrument = ic.instruments_dict[pair_name]
+        except KeyError:
+            print(f"ERROR: '{pair_name}' not found in instruments_dict.")
+            return None
+
         units = round(units, instrument.tradeUnitsPrecision)
 
         if direction == -1:  # SELL
@@ -152,11 +157,18 @@ class OandaApi:
 
         ok, response = self.make_request(url, verb="post", data=data, code=201)
 
-        if ok == True and 'orderFillTransaction' in response:
-            return response['orderFillTransaction']['id']
+        if ok:
+            if 'orderFillTransaction' in response:
+                trade_id = response['orderFillTransaction']['id']
+                print(f"Trade placed successfully. Trade ID: {trade_id}")
+                return trade_id
+            else:
+                print(f"Unexpected response structure: {response}")
+                return None
         else:
+            print(f"Failed to place trade. Response: {response}")
             return None
-            
+
     def close_trade(self, trade_id):
         url = f"accounts/{ACCOUNT_ID}/trades/{trade_id}/close"
         ok, _ = self.make_request(url, verb="put", code=200)
