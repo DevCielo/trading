@@ -29,7 +29,8 @@ class Bot:
         with open('./bot/settings.json', 'r') as f:
             data = json.loads(f.read())
             # Keys are "GBP_CHF" and "EUR_CHF", values are dictionaries
-            self.trade_settings = { k: TradeSettings(v, k) for k, v in data.items()}
+            self.trade_settings = { k: TradeSettings(v, k) for k, v in data['pairs'].items()}
+            self.trade_risk = data['trade_risk']
 
     def setup_logs(self):
         self.logs = {}
@@ -62,7 +63,7 @@ class Bot:
                     self.log_to_main(f"Place Trade: {trade_decision}")
 
                     # Place trade
-                    place_trade(trade_decision, self.api, self.log_to_main, self.log_to_error)
+                    place_trade(trade_decision, self.api, self.log_message, self.log_to_error, self.trade_risk)
  
     def run(self):
         while True:

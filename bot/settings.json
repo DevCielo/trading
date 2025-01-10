@@ -1,5 +1,7 @@
 {
-    "GBP_CHF": {
+    "trade_risk": 20,
+    "pairs":{
+        "GBP_CHF": {
         "n_ma": 12,
         "n_std": 2.5,
         "maxspread": 0.0004,
@@ -33,5 +35,6 @@
         "maxspread": 0.0004,
         "mingain": 0.0014,
         "riskreward": 1.5
+        }
     }
 }

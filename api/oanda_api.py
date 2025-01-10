@@ -8,6 +8,7 @@ from infrastructure.instrument_collection import instrumentCollection as ic
 import json
 import constants.defs as defs
 from models.open_trade import OpenTrade
+from models.api_price import ApiPrice
 
 load_dotenv()
 
@@ -211,3 +212,17 @@ class OandaApi:
         ok, response = self.make_request(url)
         if ok and 'trades' in response:
             return [OpenTrade(x) for x in response['trades']]
+
+    def get_prices(self, instruments_list):
+        url = f"accounts/{ACCOUNT_ID}/pricing"
+
+        params = dict(
+            instruments=",".join(instruments_list)
+        )
+
+        ok, response = self.make_request(url, params=params)
+
+        if ok and 'prices' in response:
+            return [ApiPrice(x) for x in response['prices']]
+
+        return None
