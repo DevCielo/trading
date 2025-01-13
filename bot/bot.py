@@ -1,3 +1,4 @@
+# python run_bot.py to run
 import json
 import time
 from bot.candle_manager import CandleManager
