@@ -6,6 +6,7 @@ class TradeSettings:
         self.maxspread = ob['maxspread']
         self.mingain = ob['mingain']
         self.riskreward = ob['riskreward']
+        self.pair = pair
 
     def __repr__(self):
         return str(vars(self))

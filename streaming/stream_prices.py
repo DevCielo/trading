@@ -10,15 +10,22 @@ from models.live_api_price import LiveApiPrice
 from infrastructure.log_wrapper import LogWrapper
 from streaming.stream_base import StreamBase
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 STREAM_URL = f"https://stream-fxpractice.oanda.com/v3"
 
 API_KEY = os.getenv("API_KEY")
 ACCOUNT_ID = os.getenv("ACCOUNT_ID")
 OANDA_URL = os.getenv("OANDA_URL")
 
+print(f"API_KEY: {API_KEY}")
+print(f"ACCOUNT_ID: {ACCOUNT_ID}")
+print(f"OANDA_URL: {OANDA_URL}")
 class PriceStreamer(StreamBase):
 
-    LOG_FREQ = 60
+    LOG_FREQ = 20
 
     def __init__(self, shared_prices, price_lock: threading.Lock, price_events):
         """
@@ -97,6 +104,7 @@ class PriceStreamer(StreamBase):
                     # Processing
                     self.update_live_price(LiveApiPrice(decoded_price))
                     # More than 60 secs have passed
+                    # print(LiveApiPrice(decoded_price).get_dict())
                     if timer() - start > PriceStreamer.LOG_FREQ:
                         print(LiveApiPrice(decoded_price).get_dict())
                         self.log_data()
