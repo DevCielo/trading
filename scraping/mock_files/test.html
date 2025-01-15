@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cool Books Store</title>
+</head>
+
+<body>
+    <!-- Header section with navigation -->
+    <header id="main-header" class="site-header">
+        <nav class="navigation-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main content section -->
+    <div class="container">
+        <div id="featured-books" class="book-section">
+            <h1 class="section-title">Featured Books of Middle-earth</h1>
+
+            <!-- Book entries with nested elements -->
+            <div class="book-entry" data-category="fiction" data-isbn="978-1234567890" data-release-date="2024-03-15"
+                data-reading-level="intermediate" aria-label="Book details for The Great Party"
+                custom-publisher="Shire Publishing House">
+                <h2>The Great Party: A Hobbit's Guide to Second Breakfast</h2>
+                <p class="author">By Bilbo Baggins</p>
+                <p class="price">$19.99 or 50 silver pennies</p>
+                <div class="book-details">
+                    <span class="rating">4.5/5 (Reviewed by the Council of Elrond)</span>
+                    <span class="stock">In Stock (Until the next party)</span>
+                </div>
+            </div>
+
+            <div class="book-entry" data-category="non-fiction" data-isbn="978-0987654321"
+                data-release-date="2024-01-20" data-reading-level="beginner"
+                aria-label="Book details for learning the way of the Uruk-hai" custom-publisher="Isengard Publications">
+                <h2>Learning Uruk-hai: A Beginner's Guide to Grunt Communication</h2>
+                <p class="author">By Gorbag</p>
+                <p class="price">$29.99 (Meat back guarantee)</p>
+                <div class="book-details">
+                    <span class="rating">5/5 (Saruman approved)</span>
+                    <span class="stock">Limited Stock (Orcs ate some pages)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table section -->
+        <div id="best-sellers">
+            <h2>Weekly Best Sellers (As counted by Gandalf)</h2>
+            <table class="sales-table" data-last-updated="2024-03-20" data-report-period="weekly"
+                data-region="all-realms-of-middle-earth" custom-sorting="sales-desc"
+                aria-label="Weekly bestsellers table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Title</th>
+                        <th>Sales (in Mithril coins)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-product-id="GA123" data-category="self-help" data-stock-status="in-stock"
+                        class="bestseller-row premium-item" custom-discount="10">
+                        <td>1</td>
+                        <td>The Worried Balrog: Overcoming Fear of Heights in Mines</td>
+                        <td data-original-sales="1234">1,234</td>
+                    </tr>
+                    <tr data-product-id="LP456" data-category="technology" data-stock-status="limited"
+                        class="bestseller-row sale-item" custom-promotion="featured">
+                        <td>2</td>
+                        <td>Learning Python: A Snake Charmer's Guide to Code</td>
+                        <td data-original-sales="987">987</td>
+                    </tr>
+                    <tr data-product-id="CB789" data-category="cooking" data-stock-status="out-stock"
+                        class="bestseller-row clearance" custom-restock="pending">
+                        <td>3</td>
+                        <td>Cooking Basics: Recipes That Even a Nazgûl Can't Ruin</td>
+                        <td data-original-sales="876">876</td>
+                    </tr>
+                    <tr data-product-id="CP995" data-category="education"
+                        data-stock-status="more than hobbits in the Shire" class="bestseller-row sale-item"
+                        custom-promotion="featured">
+                        <td>4</td>
+                        <td>Learning C++: Harder Than Destroying The One Ring</td>
+                        <td data-original-sales="955">955</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer class="site-footer">
+        <p class="copyright">© 2025 A sort of book store (It's really not)</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Facebook (fake)</a>
+            <a href="#" class="social-link">Twitter (sorry, X)</a>
+            <a href="#" class="social-link">Instagram (no way)</a>
+        </div>
+    </footer>
+</body>
+
+</html>
