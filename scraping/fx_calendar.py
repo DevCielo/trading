@@ -80,7 +80,7 @@ def get_fx_calendar(from_date):
 def fx_calendar():
     # final_data = []
 
-    start = parse('2024-12-05T00:00:00Z')
+    start = parse('2024-01-12T00:00:00Z')
     end = parse('2025-01-12T00:00:00Z')
 
     database = DataDB()
