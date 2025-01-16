@@ -5,9 +5,19 @@ from dateutil import parser
 from infrastructure.collect_data import run_collection
 from simulation.ema_macd_mp import run_ema_macd
 from streaming.streamer import run_streamer
+from db.db import DataDB
+
+def db_tests():
+    d = DataDB()
+
+    # d.add_one(DataDB.SAMPLE_COLL, dict(age=12, name="fred", eyes='blue'))
+    print(d.query_all(DataDB.SAMPLE_COLL, age=13))
 
 if __name__ == "__main__":
     api = OandaApi()
+    #instrumentCollection.CreateDB(api.get_account_instruments())
+    instrumentCollection.LoadInstrumentsDB()
+    print(instrumentCollection.instruments_dict)
 
     # dfr = parser.parse("2021-04-21T01:00:00Z")
     # dto = parser.parse("2021-04-28T16:00:00Z")
@@ -24,7 +34,7 @@ if __name__ == "__main__":
     # print(data)
 
     # instrumentCollection.CreateFile(api.get_account_instruments(), "./data")
-    instrumentCollection.LoadInstruments("./data")
+    #instrumentCollection.LoadInstruments("./data")
     # instrumentCollection.PrintInstruments()
 
     # run_ma_sim(curr_list=["EUR", "USD", "GBP", "JPY", "AUD", "CAD"])
@@ -32,6 +42,9 @@ if __name__ == "__main__":
     # run_collection(instrumentCollection, api)
 
     # run_ma_sim()
-    run_streamer()
+    #run_streamer()
+    #d = DataDB()
+    #d.test_connection()
+    #db_tests()
     
 

@@ -8,5 +8,5 @@ from scraping.investing_com import investing_com
 
 #[print(x) for x in data]
 
-# fx_calendar()
-print(investing_com())
+fx_calendar()
+# print(investing_com())
