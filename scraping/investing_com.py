@@ -96,15 +96,11 @@ def investing_com(pair_ids=range(1, 4), timeframes=[3600, 86400], delay=1):
     return pd.DataFrame(data)
 
 def get_pair(pair_name, tf):
-    tfs = {
-        "H1": 3600,
-        "D": 86400
-    }
 
-    if tf not in tfs:
-        tf = tfs['H1']
+    if tf not in defs.TFS:
+        tf = defs.TFS['H1']
     else:
-        tf = tfs[tf]
+        tf = defs.TFS[tf]
     
     if pair_name in defs.INVESTING_COM_PAIRS:
         pair_id = defs.INVESTING_COM_PAIRS[pair_name]['pair_id']
