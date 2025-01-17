@@ -14,7 +14,7 @@ def bloomberg_com():
 
     for card in cards:
         #headline_link = card.select_one('a[data-testid="Heading"]')
-        headline_link = card.find('a', attrs={'data-testid': 'Link'})
+        headline_link = card.find('a', attrs={'data-testid': 'Heading'})
         if headline_link:
             articles.append(dict(
                 headline=headline_link.text,

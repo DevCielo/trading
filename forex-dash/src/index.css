@@ -1,0 +1,90 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Anek Odia', sans-serif;
+}
+
+#app-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+  padding: 0rem 1rem;
+}
+
+.segment {
+  padding: 1em;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.3rem;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+}
+
+#navbar {
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 0;
+}
+
+.navtitle {
+  font-size: large;
+  font-weight: 700;
+  padding: 1rem;
+}
+
+#navlinks {
+  display: flex;
+}
+
+.navlink {
+  padding: 1rem;
+}
+
+.navlink a {
+  color: white;
+}
+
+.navlink a:visited {
+  color: white;
+}
+
+.navlink a:hover {
+  color: #ddd;
+}
+
+.titleHead {
+  padding-top: 1rem;
+}
+
+.account-row {
+  display: flex;
+
+}
+
+.account-row .header {
+  flex-basis: 40%;
+}
+
+.account-row .bold {
+  font-weight: 700;
+}
+
+.headline {
+  font-weight: 500;
+  padding: 0.8em 0em;
+}
+
+.headline a {
+  text-decoration: none;
+  color: black;
+}
+
+.headline a:hover {
+  font-size: large;
+  font-weight: 700;
+  color: cornflowerblue;
+}
