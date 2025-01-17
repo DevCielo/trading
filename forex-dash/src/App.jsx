@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route exact path="/dashboard" element={<Dashboard />} />
             </Routes>
           </div>
+          <Footer />
         </div>
       </BrowserRouter>
     </>

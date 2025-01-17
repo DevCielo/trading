@@ -23,7 +23,7 @@ const Headlines = () => {
                 {
                     headlines && headlines.map((item, index) => {
                         return (
-                            <Headline data={item} />
+                            <Headline key={index} data={item} />
 
                         )
                     })

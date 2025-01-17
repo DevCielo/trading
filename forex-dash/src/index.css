@@ -4,9 +4,61 @@ body {
   font-family: 'Anek Odia', sans-serif;
 }
 
+button {
+  cursor: pointer;
+  min-height: 1em;
+  border: none;
+  background-color: #0078D7;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1.2rem;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+button:hover {
+  background-color: #2b88D8;
+}
+
+button:active {
+  background-color: #00B294;
+}
+
+select {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: rgb(231, 231, 231);
+  font-size: 0.9rem;
+}
+
+.select {
+  margin-left: 0.7rem;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+}
+
+.options div {
+  margin-left: 1rem;
+}
+
 #app-holder {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
@@ -87,4 +139,40 @@ body {
   font-size: large;
   font-weight: 700;
   color: cornflowerblue;
+}
+
+.progress {
+  height: 1.5rem;
+  border-radius: 0.3rem;
+}
+
+.progress-holder {
+  background-color: rgb(222, 222, 222);
+}
+
+.progress-text {
+  text-align: center;
+  font-weight: 700;
+}
+
+.progress-wrap {
+  margin: 1.0rem 0rem;
+}
+
+#price-chart-holder {
+  min-height: 600px;
+  height: calc(100vh-400px);
+}
+
+#chartDiv {
+  height: calc(100% - 50px);
+}
+
+#footer {
+  padding: 1rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.785);
+  color: white;
+  margin-top: 2rem;
+  flex-grow: 0;
 }
